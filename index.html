@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,6 +59,11 @@
       border: none;
       cursor: pointer;
       font-size: 16px;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .section {
@@ -264,12 +268,12 @@
     "https://vgnyzdaaqogdsdpyirvc.supabase.co";
 
   const SUPABASE_PUBLISHABLE_KEY =
-    "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE";
+    "sb_publishable_9IXZUU-jTFbVHfudf8-_8A_Y--DTJx2";
 
   const supabaseClient =
     window.supabase.createClient(
-      SUPABASE_URL, "sb_publishable_9IXZUU-jTFbVHfudf8-_8A_Y--DTJx2"
-    );
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
     );
 
   const enquiryForm =
@@ -302,30 +306,38 @@
     const message =
       document.getElementById("message").value.trim();
 
-    const { error } =
-      await supabaseClient
-        .from("enquiries")
-        .insert([{
-          name: name,
-          phone: phone,
-          city: city,
-          interest: interest,
-          message: message
-        }]);
+    try {
+      const { error } =
+        await supabaseClient
+          .from("enquiries")
+          .insert([{
+            name: name,
+            phone: phone,
+            city: city,
+            interest: interest,
+            message: message
+          }]);
 
-    submitBtn.disabled = false;
+      if (error) {
+        console.error(error);
+        formMessage.innerText =
+          "Something went wrong. Please try again.";
+        submitBtn.disabled = false;
+        return;
+      }
 
-    if (error) {
-      console.error(error);
+      formMessage.innerText =
+        "Enquiry submitted successfully!";
+
+      enquiryForm.reset();
+      submitBtn.disabled = false;
+
+    } catch (err) {
+      console.error(err);
       formMessage.innerText =
         "Something went wrong. Please try again.";
-      return;
+      submitBtn.disabled = false;
     }
-
-    formMessage.innerText =
-      "Enquiry submitted successfully!";
-
-    enquiryForm.reset();
   });
 
 
