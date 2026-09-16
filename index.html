@@ -11,11 +11,11 @@
 body{background:#f5f7fb;color:#172033;line-height:1.6}
 header{background:linear-gradient(135deg,#0f172a,#1e40af);color:#fff;padding:18px 6%;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
 .logo{font-size:20px;font-weight:bold}
-header a{color:#fff;text-decoration:none;margin-left:18px;font-size:14px}
+header a{color:#fff;text-decoration:none;margin-left:16px;font-size:14px}
 .hero{background:linear-gradient(135deg,#1d4ed8,#2563eb,#0ea5e9);color:#fff;padding:80px 6%;text-align:center}
 .hero h1{font-size:42px;max-width:850px;margin:auto}
 .hero p{max-width:700px;margin:18px auto 28px;font-size:18px}
-.btn{display:inline-block;background:#facc15;color:#111827;padding:14px 25px;border-radius:8px;text-decoration:none;font-weight:bold;border:none;cursor:pointer}
+.btn{display:inline-block;background:#facc15;color:#111827;padding:13px 22px;border-radius:8px;text-decoration:none;font-weight:bold;border:none;cursor:pointer}
 section{padding:60px 6%}
 .section-title{text-align:center;font-size:30px;margin-bottom:35px}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:auto}
@@ -25,18 +25,19 @@ section{padding:60px 6%}
 input,select,textarea{width:100%;padding:13px;margin:8px 0 16px;border:1px solid #d1d5db;border-radius:8px;font-size:15px}
 textarea{min-height:110px;resize:vertical}
 .form-box button{width:100%}
-#status{margin-top:15px;text-align:center;font-weight:bold}
+.message{text-align:center;font-weight:bold;margin-top:12px}
 .admin{background:#111827;color:#fff}
 .admin-box{max-width:1200px;margin:auto;background:#1f2937;padding:30px;border-radius:16px}
-.admin-box h2{margin-bottom:20px}
-.admin input{background:#fff}
-.login-btn{width:100%}
-#adminPanel{display:none;margin-top:30px}
+.admin-box input{background:#fff}
+#adminPanel,#customerPanel{display:none;margin-top:30px}
+.dashboard{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:25px}
+.stat{background:#fff;color:#111827;padding:20px;border-radius:12px;text-align:center}
+.stat strong{display:block;font-size:30px;color:#2563eb}
 .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}
 .search-box{flex:1;min-width:220px;margin:0}
 .refresh-btn{background:#2563eb;color:#fff;border:none;padding:12px 18px;border-radius:7px;cursor:pointer}
 .table-wrap{overflow-x:auto;background:#fff;color:#111827;border-radius:12px}
-table{width:100%;border-collapse:collapse;min-width:1050px}
+table{width:100%;border-collapse:collapse;min-width:1100px}
 th,td{padding:12px;border-bottom:1px solid #e5e7eb;text-align:left;font-size:13px}
 th{background:#e5e7eb}
 .action-btn{display:inline-block;padding:7px 10px;border-radius:6px;text-decoration:none;border:none;cursor:pointer;font-size:12px;margin:2px}
@@ -44,12 +45,23 @@ th{background:#e5e7eb}
 .whatsapp-btn{background:#22c55e;color:#fff}
 .delete-btn{background:#dc2626;color:#fff}
 .status-select{width:auto;margin:0;padding:7px;font-size:12px}
+.customer-section{background:#e0f2fe}
+.customer-box{max-width:850px;margin:auto;background:#fff;padding:30px;border-radius:16px;box-shadow:0 8px 30px rgba(0,0,0,.1)}
+.customer-tabs{display:flex;gap:10px;margin-bottom:20px}
+.customer-tabs button{flex:1;padding:12px;border:none;border-radius:8px;cursor:pointer}
+.active-tab{background:#2563eb;color:#fff}
+.inactive-tab{background:#e5e7eb;color:#111827}
+.customer-table{overflow-x:auto}
+.customer-table table{min-width:650px}
+.logout-btn{background:#dc2626;color:#fff;border:none;padding:10px 16px;border-radius:7px;cursor:pointer}
 footer{background:#020617;color:#cbd5e1;text-align:center;padding:25px;font-size:14px}
+
 @media(max-width:768px){
 .hero h1{font-size:30px}
 .cards{grid-template-columns:1fr}
+.dashboard{grid-template-columns:repeat(2,1fr)}
 header{padding:15px 4%}
-header a{margin-left:8px;font-size:12px}
+header a{margin-left:7px;font-size:12px}
 section{padding:45px 5%}
 }
 </style>
@@ -62,488 +74,11 @@ section{padding:45px 5%}
 <div>
 <a href="#benefits">Benefits</a>
 <a href="#enquiry">Enquiry</a>
+<a href="#customer">Customer</a>
 <a href="#admin">Admin</a>
 </div>
 </header>
 
 <section class="hero">
 <h1>Start Your Delivery Business With Zero Investment</h1>
-<p>Become a delivery business partner and explore a simple, low-cost business opportunity in your city.</p>
-<a href="#enquiry" class="btn">Apply Now</a>
-</section>
-
-<section id="benefits">
-<h2 class="section-title">Why Become a Partner?</h2>
-<div class="cards">
-<div class="card">
-<h3>Zero Investment</h3>
-<p>Explore a business opportunity without an upfront investment.</p>
-</div>
-<div class="card">
-<h3>Local Business</h3>
-<p>Operate in your preferred city and build local delivery operations.</p>
-</div>
-<div class="card">
-<h3>Business Support</h3>
-<p>Get guidance and support while setting up your delivery business.</p>
-</div>
-</div>
-</section>
-
-<section id="enquiry">
-<h2 class="section-title">Submit Your Enquiry</h2>
-<div class="form-box">
-
-<form id="enquiryForm">
-
-<label>Name</label>
-<input type="text" id="name" placeholder="Enter your name" required>
-
-<label>Phone</label>
-<input type="tel" id="phone" placeholder="Enter your phone number" required>
-
-<label>City</label>
-<input type="text" id="city" placeholder="Enter your city" required>
-
-<label>Interest</label>
-<select id="interest" required>
-<option value="">Select an option</option>
-<option value="Delivery Franchise">Delivery Franchise</option>
-<option value="Business Partner">Business Partner</option>
-<option value="Delivery Service">Delivery Service</option>
-<option value="Other">Other</option>
-</select>
-
-<label>Message</label>
-<textarea id="message" placeholder="Write your message"></textarea>
-
-<button class="btn" type="submit">Submit Enquiry</button>
-<div id="status"></div>
-
-</form>
-</div>
-</section>
-
-<section id="admin" class="admin">
-
-<div class="admin-box">
-
-<h2>Admin Panel</h2>
-
-<form id="loginForm">
-
-<input type="email" id="adminEmail" placeholder="Admin Email" required>
-
-<input type="password" id="adminPassword" placeholder="Admin Password" required>
-
-<button class="btn login-btn" type="submit">Admin Login</button>
-
-</form>
-
-<div id="loginStatus"></div>
-
-<div id="adminPanel">
-
-<div class="toolbar">
-
-<input
-class="search-box"
-type="text"
-id="searchInput"
-placeholder="Search name, phone, city or interest..."
-oninput="filterEnquiries()"
->
-
-<button class="refresh-btn" onclick="loadEnquiries()">
-Refresh Enquiries
-</button>
-
-</div>
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-<tr>
-<th>Date</th>
-<th>Name</th>
-<th>Phone</th>
-<th>City</th>
-<th>Interest</th>
-<th>Message</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody id="enquiryTable"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
-</section>
-
-<footer>
-© 2026 Delivery Franchise. All Rights Reserved.
-</footer>
-
-<script>
-
-const SUPABASE_URL =
-"https://vgnyzdaaqogdsdpyirvc.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_9IXZUU-jTFbVHfudf8-_8A_Y--DTJx2";
-
-const supabaseClient =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_PUBLISHABLE_KEY
-);
-
-let allEnquiries = [];
-
-document.getElementById("enquiryForm")
-.addEventListener("submit", async function(e){
-
-e.preventDefault();
-
-const status =
-document.getElementById("status");
-
-status.textContent="Submitting...";
-status.style.color="#2563eb";
-
-const name =
-document.getElementById("name").value.trim();
-
-const phone =
-document.getElementById("phone").value.trim();
-
-const city =
-document.getElementById("city").value.trim();
-
-const interest =
-document.getElementById("interest").value;
-
-const message =
-document.getElementById("message").value.trim();
-
-const {error} =
-await supabaseClient
-.from("enquiries")
-.insert([{
-name:name,
-phone:phone,
-city:city,
-interest:interest,
-message:message
-}]);
-
-if(error){
-
-console.error(error);
-
-status.textContent="Unable to submit enquiry.";
-status.style.color="red";
-
-return;
-}
-
-status.textContent="Enquiry submitted successfully!";
-status.style.color="green";
-
-document.getElementById("enquiryForm").reset();
-
-});
-
-document.getElementById("loginForm")
-.addEventListener("submit", async function(e){
-
-e.preventDefault();
-
-const email =
-document.getElementById("adminEmail").value;
-
-const password =
-document.getElementById("adminPassword").value;
-
-const loginStatus =
-document.getElementById("loginStatus");
-
-loginStatus.textContent="Logging in...";
-
-const {error} =
-await supabaseClient.auth.signInWithPassword({
-email:email,
-password:password
-});
-
-if(error){
-
-loginStatus.textContent=
-"Login failed: "+error.message;
-
-loginStatus.style.color="#fca5a5";
-
-return;
-}
-
-loginStatus.textContent="Login successful.";
-loginStatus.style.color="#86efac";
-
-document.getElementById("adminPanel")
-.style.display="block";
-
-await loadEnquiries();
-
-});
-
-async function loadEnquiries(){
-
-const table =
-document.getElementById("enquiryTable");
-
-table.innerHTML=
-"<tr><td colspan='8'>Loading...</td></tr>";
-
-const {data,error} =
-await supabaseClient
-.from("enquiries")
-.select("*")
-.order("created_at",{ascending:false});
-
-if(error){
-
-console.error(error);
-
-table.innerHTML=
-"<tr><td colspan='8'>Unable to load enquiries.</td></tr>";
-
-return;
-}
-
-allEnquiries=data || [];
-
-displayEnquiries(allEnquiries);
-
-}
-
-function displayEnquiries(data){
-
-const table =
-document.getElementById("enquiryTable");
-
-table.innerHTML="";
-
-if(!data.length){
-
-table.innerHTML=
-"<tr><td colspan='8'>No enquiries found.</td></tr>";
-
-return;
-}
-
-data.forEach(function(item){
-
-const row =
-document.createElement("tr");
-
-const phone =
-String(item.phone || "")
-.replace(/\D/g,"");
-
-const status =
-item.status || "New";
-
-row.innerHTML=`
-
-<td>${item.created_at ? new Date(item.created_at).toLocaleString() : ""}</td>
-
-<td>${escapeHtml(item.name || "")}</td>
-
-<td>${escapeHtml(item.phone || "")}</td>
-
-<td>${escapeHtml(item.city || "")}</td>
-
-<td>${escapeHtml(item.interest || "")}</td>
-
-<td>${escapeHtml(item.message || "")}</td>
-
-<td>
-<select
-class="status-select"
-onchange="updateStatus(${item.id},this.value)">
-<option value="New" ${status==="New"?"selected":""}>New</option>
-<option value="Contacted" ${status==="Contacted"?"selected":""}>Contacted</option>
-<option value="Closed" ${status==="Closed"?"selected":""}>Closed</option>
-</select>
-</td>
-
-<td>
-
-<a
-class="action-btn call-btn"
-href="tel:${phone}">
-Call
-</a>
-
-<a
-class="action-btn whatsapp-btn"
-target="_blank"
-href="https://wa.me/91${phone}">
-WhatsApp
-</a>
-
-<button
-class="action-btn delete-btn"
-onclick="deleteEnquiry(${item.id})">
-Delete
-</button>
-
-</td>
-
-`;
-
-table.appendChild(row);
-
-});
-
-}
-
-function filterEnquiries(){
-
-const search =
-document.getElementById("searchInput")
-.value
-.toLowerCase()
-.trim();
-
-if(!search){
-
-displayEnquiries(allEnquiries);
-return;
-
-}
-
-const filtered =
-allEnquiries.filter(function(item){
-
-return (
-
-String(item.name || "")
-.toLowerCase()
-.includes(search)
-
-||
-
-String(item.phone || "")
-.toLowerCase()
-.includes(search)
-
-||
-
-String(item.city || "")
-.toLowerCase()
-.includes(search)
-
-||
-
-String(item.interest || "")
-.toLowerCase()
-.includes(search)
-
-||
-
-String(item.message || "")
-.toLowerCase()
-.includes(search)
-
-||
-
-String(item.status || "")
-.toLowerCase()
-.includes(search)
-
-);
-
-});
-
-displayEnquiries(filtered);
-
-}
-
-async function updateStatus(id,newStatus){
-
-const {error} =
-await supabaseClient
-.from("enquiries")
-.update({
-status:newStatus
-})
-.eq("id",id);
-
-if(error){
-
-console.error(error);
-
-alert("Status update failed.");
-
-return;
-}
-
-const item =
-allEnquiries.find(function(x){
-return x.id===id;
-});
-
-if(item){
-item.status=newStatus;
-}
-
-}
-
-async function deleteEnquiry(id){
-
-if(!confirm("Delete this enquiry?")){
-return;
-}
-
-const {error} =
-await supabaseClient
-.from("enquiries")
-.delete()
-.eq("id",id);
-
-if(error){
-
-alert("Unable to delete enquiry.");
-console.error(error);
-
-return;
-}
-
-await loadEnquiries();
-
-}
-
-function escapeHtml(value){
-
-return String(value)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-</script>
-
-</body>
-</html>
+<p>Become a delivery business partner and explore a simple, low-cost business opportunity
