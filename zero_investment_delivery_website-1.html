@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Investment Delivery Franchise</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{color:#172033;background:#f7f9fc;line-height:1.6}
+header{background:#0b63ce;color:white;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:21px;font-weight:800}
+nav a{color:white;text-decoration:none;margin-left:18px;font-size:14px}
+.hero{padding:70px 6%;background:linear-gradient(135deg,#0b63ce,#083b91);color:white;text-align:center}
+.hero h1{font-size:42px;line-height:1.15;margin-bottom:18px}
+.hero p{max-width:650px;margin:0 auto 28px;font-size:18px}
+.btn{display:inline-block;background:#fff;color:#0b63ce;padding:13px 24px;border-radius:8px;text-decoration:none;font-weight:700}
+section{padding:55px 6%;max-width:1100px;margin:auto}
+.title{text-align:center;margin-bottom:30px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;padding:25px;border-radius:14px;box-shadow:0 5px 20px #0000000d}
+.card h3{margin:10px 0}
+.icon{font-size:30px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step{background:#eef5ff;padding:22px;border-radius:12px}
+form{max-width:650px;margin:auto;background:white;padding:28px;border-radius:14px;box-shadow:0 5px 20px #0000000d}
+input,select,textarea{width:100%;padding:13px;margin:8px 0 15px;border:1px solid #d7dce5;border-radius:7px}
+button{width:100%;padding:14px;border:0;border-radius:8px;background:#0b63ce;color:white;font-size:16px;font-weight:700;cursor:pointer}
+.notice{background:#fff7df;border-left:5px solid #f0ad00;padding:16px;margin:25px auto;max-width:900px}
+footer{background:#101828;color:white;text-align:center;padding:25px}
+@media(max-width:700px){nav{display:none}.hero h1{font-size:32px}.cards,.steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">Zero Investment Delivery</div>
+<nav><a href="#home">Home</a><a href="#benefits">Benefits</a><a href="#apply">Apply</a></nav>
+</header>
+
+<div class="hero" id="home">
+<h1>Start Your Delivery Business</h1>
+<p>Explore our delivery franchise opportunity and submit your details to learn about eligibility, service areas and onboarding.</p>
+<a class="btn" href="#apply">Apply Now</a>
+</div>
+
+<div class="notice">
+<strong>Important:</strong> “Zero investment” terms, eligibility and onboarding conditions can vary. Please verify all fees and terms before making any payment.
+</div>
+
+<section id="benefits">
+<div class="title"><h2>Why Join?</h2><p>Simple information for prospective delivery partners.</p></div>
+<div class="cards">
+<div class="card"><div class="icon">🚚</div><h3>Delivery Opportunity</h3><p>Build a local delivery operation and serve customers in your selected area.</p></div>
+<div class="card"><div class="icon">📱</div><h3>Easy Enquiry</h3><p>Submit your details online and get information about the next steps.</p></div>
+<div class="card"><div class="icon">🤝</div><h3>Partner Support</h3><p>Get onboarding information, requirements and operational guidance.</p></div>
+</div>
+</section>
+
+<section>
+<div class="title"><h2>How It Works</h2></div>
+<div class="steps">
+<div class="step"><h3>1. Apply</h3><p>Fill in your name, phone number and location.</p></div>
+<div class="step"><h3>2. Verification</h3><p>Your submitted details can be reviewed for eligibility.</p></div>
+<div class="step"><h3>3. Onboarding</h3><p>Eligible applicants receive the applicable onboarding information.</p></div>
+</div>
+</section>
+
+<section id="apply">
+<div class="title"><h2>Franchise Enquiry</h2><p>Fill out the form below.</p></div>
+<form onsubmit="submitForm(event)">
+<label>Full Name</label>
+<input id="name" required placeholder="Enter your name">
+<label>Mobile Number</label>
+<input id="phone" required pattern="[0-9]{10}" placeholder="10-digit mobile number">
+<label>City / PIN Code</label>
+<input id="location" required placeholder="Your city or PIN code">
+<label>Interested In</label>
+<select id="interest"><option>Delivery Franchise</option><option>Delivery Partner</option><option>Courier Business</option></select>
+<label>Message (optional)</label>
+<textarea id="message" rows="4" placeholder="Tell us anything else"></textarea>
+<button type="submit">Submit Enquiry</button>
+<p id="result" style="margin-top:14px;text-align:center"></p>
+</form>
+</section>
+
+<footer>
+<p>© 2026 Zero Investment Delivery. All rights reserved.</p>
+<p style="margin-top:6px;font-size:13px">This website is an independent enquiry page. It does not represent any courier company unless explicitly stated.</p>
+</footer>
+
+<script>
+function submitForm(e){
+ e.preventDefault();
+ const name=document.getElementById('name').value;
+ const phone=document.getElementById('phone').value;
+ const location=document.getElementById('location').value;
+ document.getElementById('result').innerHTML =
+ "Thank you, " + name + "! Your enquiry for " + location +
+ " has been recorded on this demo page. Phone: " + phone;
+}
+</script>
+</body>
+</html>
