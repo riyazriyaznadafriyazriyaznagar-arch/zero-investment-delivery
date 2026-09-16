@@ -1,522 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zero Investment Delivery Franchise</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero Investment Delivery Franchise</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
+}
 
-    body {
-      background: #f5f7fb;
-      color: #222;
-    }
+body{
+  background:#f5f7fb;
+  color:#172033;
+  line-height:1.6;
+}
 
-    header {
-      background: #0b5ed7;
-      color: white;
-      padding: 18px;
-      text-align: center;
-    }
+header{
+  background:linear-gradient(135deg,#0f172a,#1e40af);
+  color:white;
+  padding:18px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
 
-    header h1 {
-      font-size: 24px;
-      margin-bottom: 8px;
-    }
+.logo{
+  font-size:20px;
+  font-weight:bold;
+}
 
-    .hero {
-      background: white;
-      padding: 35px 20px;
-      text-align: center;
-    }
+header a{
+  color:white;
+  text-decoration:none;
+  margin-left:18px;
+  font-size:14px;
+}
 
-    .hero h2 {
-      font-size: 30px;
-      margin-bottom: 12px;
-      color: #0b5ed7;
-    }
+.hero{
+  background:linear-gradient(135deg,#1d4ed8,#2563eb,#0ea5e9);
+  color:white;
+  padding:80px 6%;
+  text-align:center;
+}
 
-    .hero p {
-      font-size: 17px;
-      margin-bottom: 20px;
-    }
+.hero h1{
+  font-size:42px;
+  max-width:850px;
+  margin:auto;
+}
 
-    .btn {
-      display: inline-block;
-      background: #198754;
-      color: white;
-      padding: 13px 22px;
-      border-radius: 7px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-    }
+.hero p{
+  max-width:700px;
+  margin:18px auto 28px;
+  font-size:18px;
+}
 
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+.btn{
+  display:inline-block;
+  background:#facc15;
+  color:#111827;
+  padding:14px 25px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+  border:none;
+  cursor:pointer;
+}
 
-    .section {
-      max-width: 900px;
-      margin: 25px auto;
-      padding: 20px;
-    }
+section{
+  padding:60px 6%;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-    }
+.section-title{
+  text-align:center;
+  font-size:30px;
+  margin-bottom:35px;
+}
 
-    .card {
-      background: white;
-      padding: 22px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    }
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  max-width:1100px;
+  margin:auto;
+}
 
-    .card h3 {
-      margin-bottom: 8px;
-      color: #0b5ed7;
-    }
+.card{
+  background:white;
+  padding:28px;
+  border-radius:14px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
 
-    form {
-      background: white;
-      padding: 22px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    }
+.card h3{
+  margin-bottom:10px;
+  color:#1d4ed8;
+}
 
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0 14px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
+.form-box{
+  max-width:650px;
+  margin:auto;
+  background:white;
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 30px rgba(0,0,0,.1);
+}
 
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  margin:8px 0 16px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:15px;
+}
 
-    .message {
-      margin-top: 12px;
-      font-weight: bold;
-    }
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
 
-    #adminSection {
-      display: none;
-    }
+.form-box button{
+  width:100%;
+}
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      margin-top: 15px;
-    }
+#status{
+  margin-top:15px;
+  text-align:center;
+  font-weight:bold;
+}
 
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-      font-size: 14px;
-    }
+.admin{
+  background:#111827;
+  color:white;
+}
 
-    th {
-      background: #0b5ed7;
-      color: white;
-    }
+.admin-box{
+  max-width:700px;
+  margin:auto;
+  background:#1f2937;
+  padding:30px;
+  border-radius:16px;
+}
 
-    .deleteBtn {
-      background: #dc3545;
-      color: white;
-      border: none;
-      padding: 7px 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+.admin-box h2{
+  margin-bottom:20px;
+}
 
-    footer {
-      text-align: center;
-      padding: 25px;
-      background: #222;
-      color: white;
-      margin-top: 30px;
-    }
-  </style>
+.admin input{
+  background:white;
+}
+
+.admin button{
+  width:100%;
+}
+
+#adminPanel{
+  display:none;
+  margin-top:30px;
+}
+
+.table-wrap{
+  overflow-x:auto;
+  background:white;
+  color:#111827;
+  border-radius:12px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:850px;
+}
+
+th,td{
+  padding:12px;
+  border-bottom:1px solid #e5e7eb;
+  text-align:left;
+  font-size:13px;
+}
+
+th{
+  background:#e5e7eb;
+}
+
+.delete-btn{
+  background:#dc2626;
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.refresh-btn{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:7px;
+  cursor:pointer;
+  margin-bottom:15px;
+}
+
+footer{
+  background:#020617;
+  color:#cbd5e1;
+  text-align:center;
+  padding:25px;
+  font-size:14px;
+}
+
+@media(max-width:768px){
+  .hero h1{
+    font-size:30px;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    padding:15px 4%;
+  }
+
+  header a{
+    margin-left:8px;
+    font-size:12px;
+  }
+
+  section{
+    padding:45px 5%;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Zero Investment Delivery Franchise</h1>
-  <p>Start Your Delivery Business With Zero Initial Investment</p>
+  <div class="logo">Delivery Franchise</div>
+  <div>
+    <a href="#benefits">Benefits</a>
+    <a href="#enquiry">Enquiry</a>
+    <a href="#admin">Admin</a>
+  </div>
 </header>
 
 <section class="hero">
-  <h2>Start Your Own Delivery Franchise</h2>
-  <p>Submit your details and our team will contact you.</p>
+  <h1>Start Your Delivery Business With Zero Investment</h1>
+  <p>
+    Become a delivery business partner and explore a simple,
+    low-cost business opportunity in your city.
+  </p>
   <a href="#enquiry" class="btn">Apply Now</a>
 </section>
 
-<section class="section">
-  <h2>Why Join Us?</h2>
+<section id="benefits">
+  <h2 class="section-title">Why Become a Partner?</h2>
 
   <div class="cards">
+
     <div class="card">
       <h3>Zero Investment</h3>
-      <p>Explore our delivery franchise opportunity without an upfront franchise investment.</p>
+      <p>
+        Explore a business opportunity without an upfront investment.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Local Business</h3>
+      <p>
+        Operate in your preferred city and build local delivery operations.
+      </p>
     </div>
 
     <div class="card">
       <h3>Business Support</h3>
-      <p>Get guidance and support for starting your delivery operation.</p>
+      <p>
+        Get guidance and support while setting up your delivery business.
+      </p>
     </div>
 
-    <div class="card">
-      <h3>Flexible Opportunity</h3>
-      <p>Build a local delivery business according to your area and availability.</p>
-    </div>
   </div>
 </section>
 
-<section class="section" id="enquiry">
-  <h2>Franchise Enquiry</h2>
+<section id="enquiry">
+  <h2 class="section-title">Submit Your Enquiry</h2>
 
-  <form id="enquiryForm">
+  <div class="form-box">
 
-    <label>Name</label>
-    <input type="text" id="name" required>
+    <form id="enquiryForm">
 
-    <label>Phone Number</label>
-    <input type="tel" id="phone" required>
+      <label>Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
 
-    <label>City</label>
-    <input type="text" id="city" required>
+      <label>Phone</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required>
 
-    <label>Interest</label>
-    <select id="interest" required>
-      <option value="">Select</option>
-      <option value="Delivery Franchise">Delivery Franchise</option>
-      <option value="Business Partner">Business Partner</option>
-      <option value="More Information">More Information</option>
-    </select>
+      <label>City</label>
+      <input type="text" id="city" placeholder="Enter your city" required>
 
-    <label>Message</label>
-    <textarea id="message"></textarea>
+      <label>Interest</label>
+      <select id="interest" required>
+        <option value="">Select an option</option>
+        <option value="Delivery Franchise">Delivery Franchise</option>
+        <option value="Business Partner">Business Partner</option>
+        <option value="Delivery Service">Delivery Service</option>
+        <option value="Other">Other</option>
+      </select>
 
-    <button class="btn" type="submit" id="submitBtn">
-      Submit Enquiry
-    </button>
+      <label>Message</label>
+      <textarea id="message" placeholder="Write your message"></textarea>
 
-    <div class="message" id="formMessage"></div>
-  </form>
+      <button class="btn" type="submit">Submit Enquiry</button>
+
+      <div id="status"></div>
+
+    </form>
+
+  </div>
 </section>
 
-<section class="section">
-  <h2>Admin Panel</h2>
+<section id="admin" class="admin">
 
-  <form id="loginForm">
-    <label>Admin Email</label>
-    <input type="email" id="adminEmail" required>
+  <div class="admin-box">
 
-    <label>Admin Password</label>
-    <input type="password" id="adminPassword" required>
+    <h2>Admin Panel</h2>
 
-    <button class="btn" type="submit">Admin Login</button>
+    <form id="loginForm">
 
-    <div class="message" id="loginMessage"></div>
-  </form>
-</section>
+      <input
+        type="email"
+        id="adminEmail"
+        placeholder="Admin Email"
+        required
+      >
 
-<section class="section" id="adminSection">
+      <input
+        type="password"
+        id="adminPassword"
+        placeholder="Admin Password"
+        required
+      >
 
-  <h2>Customer Enquiries</h2>
+      <button class="btn" type="submit">Admin Login</button>
 
-  <button class="btn" onclick="loadEnquiries()">
-    Refresh Enquiries
-  </button>
+    </form>
 
-  <div id="enquiryTable"></div>
+    <div id="loginStatus"></div>
 
-  <br>
+    <div id="adminPanel">
 
-  <button class="deleteBtn" onclick="logoutAdmin()">
-    Logout
-  </button>
+      <button class="refresh-btn" onclick="loadEnquiries()">
+        Refresh Enquiries
+      </button>
+
+      <div class="table-wrap">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>City</th>
+              <th>Interest</th>
+              <th>Message</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="enquiryTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </section>
 
 <footer>
-  <p>© 2026 Zero Investment Delivery Franchise</p>
+  © 2026 Delivery Franchise. All Rights Reserved.
 </footer>
 
 <script>
-  const SUPABASE_URL =
-    "https://vgnyzdaaqogdsdpyirvc.supabase.co";
 
-  const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_9IXZUU-jTFbVHfudf8-_8A_Y--DTJx2";
+const SUPABASE_URL =
+"https://vgnyzdaaqogdsdpyirvc.supabase.co";
 
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
-    );
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_9IXZUU-jTFbVHfudf8-_8A_Y--DTJx2";
 
-  const enquiryForm =
-    document.getElementById("enquiryForm");
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
-  enquiryForm.addEventListener("submit", async function(e) {
-    e.preventDefault();
 
-    const submitBtn =
-      document.getElementById("submitBtn");
+// PUBLIC ENQUIRY FORM
 
-    const formMessage =
-      document.getElementById("formMessage");
+document
+.getElementById("enquiryForm")
+.addEventListener("submit", async function(e){
 
-    submitBtn.disabled = true;
-    formMessage.innerText = "Submitting...";
+  e.preventDefault();
 
-    const name =
-      document.getElementById("name").value.trim();
+  const status =
+  document.getElementById("status");
 
-    const phone =
-      document.getElementById("phone").value.trim();
+  status.textContent = "Submitting...";
 
-    const city =
-      document.getElementById("city").value.trim();
+  const name =
+  document.getElementById("name").value.trim();
 
-    const interest =
-      document.getElementById("interest").value;
+  const phone =
+  document.getElementById("phone").value.trim();
 
-    const message =
-      document.getElementById("message").value.trim();
+  const city =
+  document.getElementById("city").value.trim();
 
-    try {
-      const { error } =
-        await supabaseClient
-          .from("enquiries")
-          .insert([{
-            name: name,
-            phone: phone,
-            city: city,
-            interest: interest,
-            message: message
-          }]);
+  const interest =
+  document.getElementById("interest").value;
 
-      if (error) {
-        console.error(error);
-        formMessage.innerText =
-          "Something went wrong. Please try again.";
-        submitBtn.disabled = false;
-        return;
-      }
+  const message =
+  document.getElementById("message").value.trim();
 
-      formMessage.innerText =
-        "Enquiry submitted successfully!";
+  const { error } =
+  await supabaseClient
+  .from("enquiries")
+  .insert([{
+    name:name,
+    phone:phone,
+    city:city,
+    interest:interest,
+    message:message
+  }]);
 
-      enquiryForm.reset();
-      submitBtn.disabled = false;
+  if(error){
 
-    } catch (err) {
-      console.error(err);
-      formMessage.innerText =
-        "Something went wrong. Please try again.";
-      submitBtn.disabled = false;
-    }
+    console.error(error);
+
+    status.textContent =
+    "Unable to submit enquiry.";
+
+    status.style.color = "red";
+
+    return;
+  }
+
+  status.textContent =
+  "Enquiry submitted successfully!";
+
+  status.style.color = "green";
+
+  document
+  .getElementById("enquiryForm")
+  .reset();
+
+});
+
+
+// ADMIN LOGIN
+
+document
+.getElementById("loginForm")
+.addEventListener("submit", async function(e){
+
+  e.preventDefault();
+
+  const email =
+  document.getElementById("adminEmail").value;
+
+  const password =
+  document.getElementById("adminPassword").value;
+
+  const loginStatus =
+  document.getElementById("loginStatus");
+
+  loginStatus.textContent =
+  "Logging in...";
+
+  const { data, error } =
+  await supabaseClient.auth.signInWithPassword({
+    email:email,
+    password:password
   });
 
+  if(error){
 
-  const loginForm =
-    document.getElementById("loginForm");
+    loginStatus.textContent =
+    "Login failed: " + error.message;
 
-  loginForm.addEventListener("submit", async function(e) {
-    e.preventDefault();
+    loginStatus.style.color = "#fca5a5";
 
-    const email =
-      document.getElementById("adminEmail").value.trim();
+    return;
+  }
 
-    const password =
-      document.getElementById("adminPassword").value;
+  loginStatus.textContent =
+  "Login successful.";
 
-    const loginMessage =
-      document.getElementById("loginMessage");
+  loginStatus.style.color = "#86efac";
 
-    loginMessage.innerText = "Logging in...";
+  document
+  .getElementById("adminPanel")
+  .style.display = "block";
 
-    const { error } =
-      await supabaseClient.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
+  await loadEnquiries();
 
-    if (error) {
-      loginMessage.innerText =
-        "Login failed. Check email and password.";
-      return;
-    }
+});
 
-    loginMessage.innerText = "Login successful.";
 
-    document.getElementById("adminSection").style.display =
-      "block";
+// LOAD ENQUIRIES
 
-    await loadEnquiries();
+async function loadEnquiries(){
 
-    document.getElementById("adminSection")
-      .scrollIntoView({
-        behavior: "smooth"
-      });
+  const table =
+  document.getElementById("enquiryTable");
+
+  table.innerHTML =
+  "<tr><td colspan='7'>Loading...</td></tr>";
+
+  const { data, error } =
+  await supabaseClient
+  .from("enquiries")
+  .select("*")
+  .order("created_at", {
+    ascending:false
   });
 
+  if(error){
 
-  async function loadEnquiries() {
+    table.innerHTML =
+    "<tr><td colspan='7'>Unable to load enquiries.</td></tr>";
 
-    const tableContainer =
-      document.getElementById("enquiryTable");
+    console.error(error);
 
-    tableContainer.innerHTML =
-      "Loading enquiries...";
+    return;
+  }
 
-    const { data, error } =
-      await supabaseClient
-        .from("enquiries")
-        .select("*")
-        .order("created_at", {
-          ascending: false
-        });
+  if(!data || data.length === 0){
 
-    if (error) {
-      console.error(error);
+    table.innerHTML =
+    "<tr><td colspan='7'>No enquiries found.</td></tr>";
 
-      tableContainer.innerHTML =
-        "Unable to load enquiries. Check Supabase RLS policies.";
+    return;
+  }
 
-      return;
-    }
+  table.innerHTML = "";
 
-    if (!data || data.length === 0) {
-      tableContainer.innerHTML =
-        "<p>No enquiries found.</p>";
-      return;
-    }
+  data.forEach(function(item){
 
-    let html = `
-      <table>
-        <tr>
-          <th>Date</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>City</th>
-          <th>Interest</th>
-          <th>Message</th>
-          <th>Action</th>
-        </tr>
+    const row =
+    document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${item.created_at ? new Date(item.created_at).toLocaleString() : ""}</td>
+      <td>${escapeHtml(item.name || "")}</td>
+      <td>${escapeHtml(item.phone || "")}</td>
+      <td>${escapeHtml(item.city || "")}</td>
+      <td>${escapeHtml(item.interest || "")}</td>
+      <td>${escapeHtml(item.message || "")}</td>
+      <td>
+        <button
+          class="delete-btn"
+          onclick="deleteEnquiry(${item.id})">
+          Delete
+        </button>
+      </td>
     `;
 
-    data.forEach(function(row) {
+    table.appendChild(row);
 
-      html += `
-        <tr>
-          <td>${escapeHtml(row.created_at || "")}</td>
-          <td>${escapeHtml(row.name || "")}</td>
-          <td>${escapeHtml(row.phone || "")}</td>
-          <td>${escapeHtml(row.city || "")}</td>
-          <td>${escapeHtml(row.interest || "")}</td>
-          <td>${escapeHtml(row.message || "")}</td>
-          <td>
-            <button
-              class="deleteBtn"
-              onclick="deleteEnquiry(${row.id})">
-              Delete
-            </button>
-          </td>
-        </tr>
-      `;
-    });
+  });
 
-    html += "</table>";
+}
 
-    tableContainer.innerHTML = html;
+
+// DELETE ENQUIRY
+
+async function deleteEnquiry(id){
+
+  if(!confirm("Delete this enquiry?")){
+    return;
   }
 
+  const { error } =
+  await supabaseClient
+  .from("enquiries")
+  .delete()
+  .eq("id", id);
 
-  async function deleteEnquiry(id) {
+  if(error){
 
-    if (!confirm("Delete this enquiry?")) {
-      return;
-    }
+    alert("Unable to delete enquiry.");
 
-    const { error } =
-      await supabaseClient
-        .from("enquiries")
-        .delete()
-        .eq("id", id);
+    console.error(error);
 
-    if (error) {
-      alert("Delete failed.");
-      console.error(error);
-      return;
-    }
-
-    await loadEnquiries();
+    return;
   }
 
+  await loadEnquiries();
 
-  async function logoutAdmin() {
-
-    await supabaseClient.auth.signOut();
-
-    document.getElementById("adminSection").style.display =
-      "none";
-
-    document.getElementById("loginMessage").innerText =
-      "Logged out.";
-  }
+}
 
 
-  function escapeHtml(value) {
+// SECURITY HELPER
 
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
+function escapeHtml(value){
 
+  return String(value)
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 
-  supabaseClient.auth.onAuthStateChange(
-    async function(event, session) {
+}
 
-      if (session) {
-
-        document.getElementById("adminSection").style.display =
-          "block";
-
-        await loadEnquiries();
-
-      } else {
-
-        document.getElementById("adminSection").style.display =
-          "none";
-      }
-    }
-  );
 </script>
 
 </body>
